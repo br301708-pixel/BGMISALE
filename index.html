@@ -1,47 +1,101 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login + Colour Game</title>
-  <style>
-    body {
-      font-family: Arial;
-      background: #0f172a;
-      color: white;
-      text-align: center;
-    }
-    .box {
-      background: #1e293b;
-      padding: 20px;
-      border-radius: 15px;
-      width: 300px;
-      margin: 50px auto;
-    }
-    input {
-      padding: 10px;
-      margin: 5px;
-      width: 90%;
-      border-radius: 8px;
-      border: none;
-    }
-    button {
-      padding: 10px 20px;
-      margin: 10px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    .red { background: red; color: white; }
-    .green { background: green; color: white; }
-    .violet { background: purple; color: white; }
-  </style>
+<title>BGMI Rewards</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: black;
+    color: white;
+    text-align: center;
+}
+
+/* Title */
+h1 {
+    color: #00ffcc;
+    text-shadow: 0 0 10px #00ffcc;
+}
+
+/* Box */
+.box {
+    margin-top: 80px;
+}
+
+/* Input */
+input {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+/* Button */
+.btn {
+    padding: 10px 20px;
+    background: red;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Gift Box */
+.gift {
+    font-size: 80px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#reward {
+    display: none;
+    margin-top: 20px;
+    color: lime;
+}
+</style>
+
 </head>
+
 <body>
 
-<!-- LOGIN -->
-<div id="loginBox" class="box">
-  <h2>🔐 Login / Register</h2>
-  <input type="text" id="username" placeholder="Username"><br>
-  <input type="password" id="password" placeholder="Password"><br>
-  <button onclick="register()">Register</button>
-  <button onclick="login
-.
+<div class="box">
+
+<h1>🎮 BGMI Rewards</h1>
+
+<p>Enter your Player ID to check rewards</p>
+
+<input type="text" id="pid" placeholder="Enter ID">
+
+<br><br>
+
+<button class="btn" onclick="next()">Continue</button>
+
+<div id="game" style="display:none;">
+    <h2>🎁 Tap Gift</h2>
+    <div class="gift" onclick="openBox()">🎁</div>
+</div>
+
+<div id="reward">✅ Reward Claimed Successfully!</div>
+
+</div>
+
+<script>
+function next() {
+    let id = document.getElementById("pid").value;
+
+    if(id === "") {
+        alert("Enter ID first!");
+        return;
+    }
+
+    alert("Processing...");
+    document.getElementById("game").style.display = "block";
+}
+
+function openBox() {
+    document.getElementById("reward").style.display = "block";
+}
+</script>
+
+</body>
+</html>
