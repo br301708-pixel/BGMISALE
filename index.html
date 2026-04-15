@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>My Shop</title>
+<title>My Flipkart Pro</title>
 
 <style>
 body {
@@ -14,8 +14,20 @@ body {
 .navbar {
     background: #2874f0;
     color: white;
-    padding: 15px;
-    font-size: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input {
+    padding: 8px;
+    width: 200px;
+}
+
+/* Cart */
+.cart {
+    cursor: pointer;
 }
 
 /* Products */
@@ -50,6 +62,18 @@ body {
     padding: 10px;
     cursor: pointer;
     border-radius: 5px;
+    margin: 5px;
+}
+
+/* Cart Box */
+#cartBox {
+    position: fixed;
+    top: 50px;
+    right: 10px;
+    background: white;
+    padding: 15px;
+    width: 250px;
+    display: none;
 }
 </style>
 
@@ -57,36 +81,83 @@ body {
 
 <body>
 
-<div class="navbar">🛒 My Shop</div>
+<!-- Navbar -->
+<div class="navbar">
+    <div>🛒 Flipkart Pro</div>
+    <input type="text" id="search" placeholder="Search..." onkeyup="searchProduct()">
+    <div class="cart" onclick="toggleCart()">🛍️ Cart (<span id="count">0</span>)</div>
+</div>
 
-<div class="container">
+<!-- Products -->
+<div class="container" id="products">
 
     <div class="card">
         <img src="https://via.placeholder.com/150">
-        <h3>Mobile Phone</h3>
+        <h3>Mobile</h3>
         <p class="price">₹9999</p>
-        <button class="btn" onclick="buy()">Buy Now</button>
+        <button class="btn" onclick="addToCart('Mobile',9999)">Add</button>
     </div>
 
     <div class="card">
         <img src="https://via.placeholder.com/150">
         <h3>Headphones</h3>
         <p class="price">₹999</p>
-        <button class="btn" onclick="buy()">Buy Now</button>
+        <button class="btn" onclick="addToCart('Headphones',999)">Add</button>
     </div>
 
     <div class="card">
         <img src="https://via.placeholder.com/150">
         <h3>Shoes</h3>
         <p class="price">₹1999</p>
-        <button class="btn" onclick="buy()">Buy Now</button>
+        <button class="btn" onclick="addToCart('Shoes',1999)">Add</button>
     </div>
 
 </div>
 
+<!-- Cart Box -->
+<div id="cartBox">
+    <h3>My Cart</h3>
+    <ul id="cartItems"></ul>
+    <p>Total: ₹<span id="total">0</span></p>
+    <button class="btn" onclick="pay()">Pay Now</button>
+</div>
+
 <script>
-function buy() {
-    alert("Order placed successfully!");
+let cart = [];
+let total = 0;
+
+function addToCart(name, price) {
+    cart.push({name, price});
+    total += price;
+
+    document.getElementById("count").innerText = cart.length;
+    document.getElementById("total").innerText = total;
+
+    let li = document.createElement("li");
+    li.innerText = name + " - ₹" + price;
+    document.getElementById("cartItems").appendChild(li);
+}
+
+function toggleCart() {
+    let box = document.getElementById("cartBox");
+    box.style.display = box.style.display === "none" ? "block" : "none";
+}
+
+function pay() {
+    alert("Redirecting to payment ₹" + total);
+
+    // 👉 Yaha apna payment link daalo
+    window.location.href = "PASTE_PAYMENT_LINK_HERE";
+}
+
+function searchProduct() {
+    let input = document.getElementById("search").value.toLowerCase();
+    let cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+        let name = card.innerText.toLowerCase();
+        card.style.display = name.includes(input) ? "block" : "none";
+    });
 }
 </script>
 
