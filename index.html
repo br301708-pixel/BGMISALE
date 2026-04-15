@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>My Flipkart Pro</title>
+<title>Flipkart Ultra Pro</title>
 
 <style>
 body {
@@ -22,12 +22,17 @@ body {
 
 input {
     padding: 8px;
-    width: 200px;
+    width: 150px;
 }
 
-/* Cart */
-.cart {
+/* Buttons */
+.btn {
+    background: orange;
+    border: none;
+    padding: 8px;
     cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
 }
 
 /* Products */
@@ -52,26 +57,26 @@ input {
 
 .price {
     color: green;
-    font-weight: bold;
 }
 
-/* Button */
-.btn {
-    background: orange;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin: 5px;
-}
-
-/* Cart Box */
+/* Cart */
 #cartBox {
     position: fixed;
-    top: 50px;
     right: 10px;
+    top: 60px;
     background: white;
-    padding: 15px;
+    padding: 10px;
+    width: 250px;
+    display: none;
+}
+
+/* Wishlist */
+#wishlistBox {
+    position: fixed;
+    left: 10px;
+    top: 60px;
+    background: white;
+    padding: 10px;
     width: 250px;
     display: none;
 }
@@ -83,43 +88,53 @@ input {
 
 <!-- Navbar -->
 <div class="navbar">
-    <div>🛒 Flipkart Pro</div>
+    <div>🛒 Flipkart Ultra</div>
     <input type="text" id="search" placeholder="Search..." onkeyup="searchProduct()">
-    <div class="cart" onclick="toggleCart()">🛍️ Cart (<span id="count">0</span>)</div>
+    <div onclick="toggleWishlist()">❤️ Wishlist</div>
+    <div onclick="toggleCart()">🛍️ Cart (<span id="count">0</span>)</div>
 </div>
 
 <!-- Products -->
 <div class="container" id="products">
 
-    <div class="card">
-        <img src="https://via.placeholder.com/150">
-        <h3>Mobile</h3>
-        <p class="price">₹9999</p>
-        <button class="btn" onclick="addToCart('Mobile',9999)">Add</button>
-    </div>
+<div class="card">
+<img src="https://via.placeholder.com/150">
+<h3>Mobile</h3>
+<p class="price">₹9999</p>
+<button class="btn" onclick="addToCart('Mobile',9999)">Add</button>
+<button class="btn" onclick="addToWishlist('Mobile')">❤️</button>
+</div>
 
-    <div class="card">
-        <img src="https://via.placeholder.com/150">
-        <h3>Headphones</h3>
-        <p class="price">₹999</p>
-        <button class="btn" onclick="addToCart('Headphones',999)">Add</button>
-    </div>
+<div class="card">
+<img src="https://via.placeholder.com/150">
+<h3>Headphones</h3>
+<p class="price">₹999</p>
+<button class="btn" onclick="addToCart('Headphones',999)">Add</button>
+<button class="btn" onclick="addToWishlist('Headphones')">❤️</button>
+</div>
 
-    <div class="card">
-        <img src="https://via.placeholder.com/150">
-        <h3>Shoes</h3>
-        <p class="price">₹1999</p>
-        <button class="btn" onclick="addToCart('Shoes',1999)">Add</button>
-    </div>
+<div class="card">
+<img src="https://via.placeholder.com/150">
+<h3>Shoes</h3>
+<p class="price">₹1999</p>
+<button class="btn" onclick="addToCart('Shoes',1999)">Add</button>
+<button class="btn" onclick="addToWishlist('Shoes')">❤️</button>
+</div>
 
 </div>
 
-<!-- Cart Box -->
+<!-- Cart -->
 <div id="cartBox">
-    <h3>My Cart</h3>
-    <ul id="cartItems"></ul>
-    <p>Total: ₹<span id="total">0</span></p>
-    <button class="btn" onclick="pay()">Pay Now</button>
+<h3>🛍️ Cart</h3>
+<ul id="cartItems"></ul>
+<p>Total ₹<span id="total">0</span></p>
+<button class="btn" onclick="checkout()">Checkout</button>
+</div>
+
+<!-- Wishlist -->
+<div id="wishlistBox">
+<h3>❤️ Wishlist</h3>
+<ul id="wishlistItems"></ul>
 </div>
 
 <script>
@@ -143,10 +158,21 @@ function toggleCart() {
     box.style.display = box.style.display === "none" ? "block" : "none";
 }
 
-function pay() {
-    alert("Redirecting to payment ₹" + total);
+function addToWishlist(name) {
+    let li = document.createElement("li");
+    li.innerText = name;
+    document.getElementById("wishlistItems").appendChild(li);
+}
 
-    // 👉 Yaha apna payment link daalo
+function toggleWishlist() {
+    let box = document.getElementById("wishlistBox");
+    box.style.display = box.style.display === "none" ? "block" : "none";
+}
+
+function checkout() {
+    alert("Order placed successfully 🎉");
+
+    // 👉 Payment link add karo yaha
     window.location.href = "PASTE_PAYMENT_LINK_HERE";
 }
 
