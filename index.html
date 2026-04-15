@@ -1,82 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Reward Center</title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta charset="UTF-8">
+<title>BGMI UC Shop</title>
 <style>
 body {
-    margin: 0;
     font-family: Arial;
-    background: radial-gradient(circle, #000000, #050505, #0a0a0a);
+    background: #0f172a;
     color: white;
+    margin: 0;
+}
+
+header {
+    background: linear-gradient(90deg, orange, red);
+    padding: 15px;
     text-align: center;
-    overflow: hidden;
-}
-
-/* Glow Title */
-h1 {
-    margin-top: 60px;
-    font-size: 30px;
-    color: #00ffcc;
-    text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffcc;
-}
-
-/* Input */
-input {
-    padding: 12px;
-    border-radius: 20px;
-    border: none;
-    width: 220px;
-    text-align: center;
-}
-
-/* Button */
-.btn {
-    padding: 12px 25px;
-    border-radius: 30px;
-    border: none;
-    background: linear-gradient(45deg, red, orange);
-    color: white;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-/* Loading bar */
-#bar {
-    width: 0%;
-    height: 10px;
-    background: lime;
-    margin: 20px auto;
-    transition: 0.2s;
-}
-
-/* Gift */
-.gift {
-    font-size: 90px;
-    display: none;
-    cursor: pointer;
-    animation: float 2s infinite;
-}
-
-/* Floating animation */
-@keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-    100% { transform: translateY(0); }
-}
-
-/* Explosion text */
-#reward {
-    display: none;
     font-size: 24px;
-    color: gold;
-    text-shadow: 0 0 20px gold;
+    font-weight: bold;
 }
 
-/* Particles */
-.particle {
-    position: absolute;
-    width: 5px;
-    height
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.card {
+    background: #1e293b;
+    margin: 15px;
+    padding: 20p
