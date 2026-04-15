@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Gaming Zone</title>
+<title>Claim Rewards</title>
 
 <style>
 body {
@@ -12,24 +12,24 @@ body {
     text-align: center;
 }
 
-/* Navbar */
-.navbar {
-    background: #111;
-    padding: 15px;
-}
-.navbar h1 {
-    color: lime;
+/* Glow Title */
+h1 {
+    color: #00ffcc;
+    text-shadow: 0 0 10px #00ffcc;
 }
 
-/* Hero Section */
-.hero {
-    padding: 100px 20px;
-    background: url('https://images.unsplash.com/photo-1605902711622-cfb43c4437d1') no-repeat center;
-    background-size: cover;
+/* Container */
+.box {
+    margin-top: 100px;
 }
-.hero h2 {
-    font-size: 40px;
-    color: #00ffcc;
+
+/* Input */
+input {
+    padding: 12px;
+    width: 250px;
+    border: none;
+    border-radius: 10px;
+    margin: 10px;
 }
 
 /* Button */
@@ -45,29 +45,17 @@ body {
     background: orange;
 }
 
-/* Cards */
-.container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 20px;
-}
-.card {
-    background: #222;
-    margin: 10px;
-    padding: 20px;
-    width: 200px;
-    border-radius: 10px;
-}
-.card:hover {
-    transform: scale(1.05);
-    transition: 0.3s;
+/* Loading */
+#loading {
+    display: none;
+    margin-top: 20px;
 }
 
-/* Footer */
-.footer {
-    background: #111;
-    padding: 10px;
+/* Success */
+#success {
+    display: none;
+    color: lime;
+    font-size: 20px;
     margin-top: 20px;
 }
 </style>
@@ -76,42 +64,41 @@ body {
 
 <body>
 
-<!-- Navbar -->
-<div class="navbar">
-    <h1>🎮 GAMING ZONE</h1>
+<div class="box">
+
+    <h1>🎁 Claim Your Rewards</h1>
+
+    <p>Enter your Player ID</p>
+
+    <input type="text" id="playerId" placeholder="Enter ID">
+
+    <br>
+
+    <button class="btn" onclick="claimReward()">Claim Now</button>
+
+    <div id="loading">⏳ Processing...</div>
+
+    <div id="success">✅ Reward Claimed Successfully!</div>
+
 </div>
 
-<!-- Hero -->
-<div class="hero">
-    <h2>Welcome Gamer 🔥</h2>
-    <p>Play. Win. Repeat.</p>
-    <button class="btn" onclick="alert('Game Start Soon!')">Start Game</button>
-</div>
+<script>
+function claimReward() {
+    var id = document.getElementById("playerId").value;
 
-<!-- Games Section -->
-<h2>🔥 Popular Games</h2>
+    if(id === "") {
+        alert("Please enter your ID!");
+        return;
+    }
 
-<div class="container">
-    <div class="card">
-        <h3>BGMI</h3>
-        <p>Battle Royale Action</p>
-    </div>
+    document.getElementById("loading").style.display = "block";
 
-    <div class="card">
-        <h3>Free Fire</h3>
-        <p>Fast Survival Game</p>
-    </div>
-
-    <div class="card">
-        <h3>Call of Duty</h3>
-        <p>War Shooting Game</p>
-    </div>
-</div>
-
-<!-- Footer -->
-<div class="footer">
-    <p>© 2026 Gaming Zone</p>
-</div>
+    setTimeout(function() {
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("success").style.display = "block";
+    }, 2000);
+}
+</script>
 
 </body>
 </html>
