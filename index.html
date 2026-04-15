@@ -1,101 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>BGMI Rewards claim and get </title>
+<title>Reward Center</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body {
     margin: 0;
     font-family: Arial;
-    background: pink;
+    background: radial-gradient(circle, #000000, #050505, #0a0a0a);
     color: white;
     text-align: center;
+    overflow: hidden;
 }
 
-/* Title */
+/* Glow Title */
 h1 {
+    margin-top: 60px;
+    font-size: 30px;
     color: #00ffcc;
-    text-shadow: 0 0 10px #00ffcc;
-}
-
-/* Box */
-.box {
-    margin-top: 80px;
+    text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffcc;
 }
 
 /* Input */
 input {
-    padding: 10px;
-    border-radius: 10px;
+    padding: 12px;
+    border-radius: 20px;
     border: none;
+    width: 220px;
+    text-align: center;
 }
 
 /* Button */
 .btn {
-    padding: 10px 20px;
-    background: black;
+    padding: 12px 25px;
+    border-radius: 30px;
     border: none;
-    border-radius: 20px;
-    color: black ;
+    background: linear-gradient(45deg, red, orange);
+    color: white;
     cursor: pointer;
+    margin-top: 10px;
 }
 
-/* Gift Box */
+/* Loading bar */
+#bar {
+    width: 0%;
+    height: 10px;
+    background: lime;
+    margin: 20px auto;
+    transition: 0.2s;
+}
+
+/* Gift */
 .gift {
-    font-size: 80px;
+    font-size: 90px;
+    display: none;
     cursor: pointer;
-    margin-top: 20px;
+    animation: float 2s infinite;
 }
 
+/* Floating animation */
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0); }
+}
+
+/* Explosion text */
 #reward {
     display: none;
-    margin-top: 20px;
-    color: lime;
-}
-</style>
-
-</head>
-
-<body>
-
-<div class="box">
-
-<h1>🎮 BGMI Rewards</h1>
-
-<p>Enter your Player ID to check rewards</p>
-
-<input type="text" id="pid" placeholder="Enter ID">
-
-<br><br>
-
-<button class="btn" onclick="next()">Continue</button>
-
-<div id="game" style="display:none;">
-    <h2>🎁 Tap Gift</h2>
-    <div class="gift" onclick="openBox()">🎁</div>
-</div>
-
-<div id="reward">✅ Reward Claimed Successfully!</div>
-
-</div>
-
-<script>
-function next() {
-    let id = document.getElementById("pid").value;
-
-    if(id === "") {
-        alert("Enter ID first!");
-        return;
-    }
-
-    alert("Processing...");
-    document.getElementById("game").style.display = "block";
+    font-size: 24px;
+    color: gold;
+    text-shadow: 0 0 20px gold;
 }
 
-function openBox() {
-    document.getElementById("reward").style.display = "block";
-}
-</script>
-
-</body>
-</html>
+/* Particles */
+.particle {
+    position: absolute;
+    width: 5px;
+    height
