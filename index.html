@@ -7,151 +7,95 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Bebas+Neue&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body, html {
-            height: 100%;
-            background: #000;
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            overflow: hidden;
-        }
+        body, html { height: 100%; background: #000; color: #fff; font-family: 'Poppins', sans-serif; overflow: hidden; }
 
-        /* 🎥 VIDEO BACKGROUND (YouTube Embed) */
+        /* 🎥 FIXED VIDEO BACKGROUND */
         .video-background {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            z-index: -2;
-            pointer-events: none;
-            overflow: hidden;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -2; pointer-events: none; overflow: hidden;
         }
-
         .video-background iframe {
-            width: 100vw;
-            height: 56.25vw; /* 16:9 Aspect Ratio */
-            min-height: 100vh;
-            min-width: 177.77vh; /* Aspect ratio control */
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            filter: brightness(0.4) contrast(1.2) blur(2px);
+            width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            filter: brightness(0.4) contrast(1.2) blur(1px);
         }
 
-        /* Dark Gradient for Text Visibility */
         .overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(0deg, rgba(0,0,0,0.9) 10%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.8) 90%);
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(0deg, rgba(0,0,0,0.95) 10%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.9) 90%);
             z-index: -1;
         }
 
         /* Reel Container */
-        .reel-container {
-            height: 100vh;
-            overflow-y: scroll;
-            scroll-snap-type: y mandatory;
-            scrollbar-width: none; /* Hide scrollbar Firefox */
-        }
-        .reel-container::-webkit-scrollbar { display: none; } /* Hide scrollbar Chrome */
+        .reel-container { height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory; scrollbar-width: none; }
+        .reel-container::-webkit-scrollbar { display: none; }
 
         .reel {
-            height: 100vh;
-            scroll-snap-align: start;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
+            height: 100vh; scroll-snap-align: start; position: relative;
+            display: flex; flex-direction: column; justify-content: flex-end;
             padding: 40px 25px 120px 25px;
         }
 
-        /* Animated UC Images */
+        /* UC IMAGE FIX (Floating Glow) */
         .uc-img-container {
-            position: absolute;
-            top: 40%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 250px;
+            position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%);
+            width: 220px; z-index: 1; text-align: center;
+        }
+        .uc-img-container img {
+            width: 100%; filter: drop-shadow(0 0 25px #f39c12);
             animation: float 3s infinite alternate ease-in-out;
-            z-index: 1;
         }
 
         @keyframes float {
-            from { transform: translate(-50%, -45%); filter: drop-shadow(0 0 10px #f39c12); }
-            to { transform: translate(-50%, -55%); filter: drop-shadow(0 0 30px #f39c12); }
+            from { transform: translateY(0px) rotate(0deg); }
+            to { transform: translateY(-20px) rotate(2deg); }
         }
 
-        /* Header */
-        .header {
-            position: fixed;
-            top: 25px; width: 100%;
-            display: flex; justify-content: space-between;
-            padding: 0 25px; z-index: 100;
-        }
-        .logo { font-family: 'Orbitron'; color: #f39c12; font-size: 22px; text-shadow: 0 0 10px #000; }
-
-        /* Product Info */
-        .info-box h2 {
-            font-family: 'Bebas Neue';
-            font-size: 4.5rem;
-            color: #00d4ff;
-            text-shadow: 2px 2px 15px rgba(0,212,255,0.8);
-            line-height: 1;
-        }
-        .price { font-family: 'Orbitron'; font-size: 24px; color: #f1c40f; margin: 10px 0 20px; }
+        /* UI Elements */
+        .header { position: fixed; top: 25px; width: 100%; display: flex; justify-content: space-between; padding: 0 25px; z-index: 100; }
+        .logo { font-family: 'Orbitron'; color: #f39c12; font-size: 22px; text-shadow: 0 0 10px #f39c12; }
+        .info-box h2 { font-family: 'Bebas Neue'; font-size: 4.8rem; color: #00d4ff; text-shadow: 0 0 20px rgba(0,212,255,0.8); line-height: 1; }
+        .price { font-family: 'Orbitron'; font-size: 26px; color: #f1c40f; margin: 10px 0 20px; text-shadow: 0 0 10px rgba(0,0,0,1); }
 
         .btn-buy {
-            background: linear-gradient(90deg, #f39c12, #e67e22);
-            border: none; padding: 18px 50px;
-            color: #000; font-weight: bold; font-size: 20px;
-            border-radius: 50px; cursor: pointer;
-            box-shadow: 0 0 20px rgba(243, 156, 18, 0.5);
-            text-transform: uppercase;
+            background: linear-gradient(90deg, #f39c12, #e67e22); border: none; padding: 18px 55px;
+            color: #000; font-weight: bold; font-size: 20px; border-radius: 50px; cursor: pointer;
+            box-shadow: 0 0 30px rgba(243, 156, 18, 0.6); text-transform: uppercase; transition: 0.3s;
         }
+        .btn-buy:active { transform: scale(0.9); }
 
-        /* Side Actions (Reels Style) */
-        .side-bar {
-            position: absolute; right: 15px; bottom: 150px;
-            display: flex; flex-direction: column; gap: 25px;
-        }
-        .icon {
-            background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
-            padding: 15px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3);
-            text-align: center;
-        }
-        .icon span { font-size: 10px; display: block; color: #f39c12; }
+        .side-bar { position: absolute; right: 15px; bottom: 160px; display: flex; flex-direction: column; gap: 25px; }
+        .icon { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 15px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); text-align: center; }
+        .icon span { font-size: 11px; display: block; color: #f39c12; font-weight: bold; }
 
-        /* Popup Form */
-        .modal {
-            display: none; position: fixed; bottom: 0; width: 100%; height: 70%;
-            background: rgba(15,15,15,0.98); border-top: 4px solid #f39c12;
-            border-radius: 30px 30px 0 0; padding: 40px 25px; z-index: 1000;
-            animation: slideUp 0.4s ease;
-        }
+        /* Modal */
+        .modal { display: none; position: fixed; bottom: 0; width: 100%; height: 75%; background: rgba(10,10,10,0.98); border-top: 4px solid #f39c12; border-radius: 35px 35px 0 0; padding: 40px 25px; z-index: 1000; animation: slideUp 0.4s ease; backdrop-filter: blur(20px); }
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-        input { width: 100%; padding: 16px; margin: 12px 0; background: #222; border: 1px solid #444; color: #fff; border-radius: 10px; }
+        input { width: 100%; padding: 16px; margin: 12px 0; background: #222; border: 1px solid #444; color: #fff; border-radius: 12px; font-size: 16px; }
     </style>
 </head>
 <body>
 
     <div class="video-background">
-        <iframe src="https://www.youtube.com/embed/pYIgh6N_k78?autoplay=1&mute=1&controls=0&loop=1&playlist=pYIgh6N_k78&showinfo=0&rel=0" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+        <iframe src="https://www.youtube.com/embed/pYIgh6N_k78?autoplay=1&mute=1&controls=0&loop=1&playlist=pYIgh6N_k78&showinfo=0&rel=0&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media"></iframe>
     </div>
     <div class="overlay"></div>
 
     <div class="header">
-        <div class="logo">GAMERHUB.UC</div>
-        <div style="background: rgba(0,0,0,0.6); padding: 5px 15px; border-radius: 20px;">🪙 12,400</div>
+        <div class="logo">GAMERHUB.PRO</div>
+        <div style="background: rgba(0,0,0,0.6); border: 1px solid #f39c12; padding: 5px 15px; border-radius: 20px; color:#f1c40f; font-family:'Orbitron'">🪙 5,000</div>
     </div>
 
     <div class="reel-container">
-        
         <div class="reel">
             <div class="uc-img-container">
-                <img src="https://i.postimg.cc/zX8yP3mP/uc-stack.png" width="100%" alt="UC">
+                <img src="https://www.pubgmobile.com/common/images/icon_uc.png" alt="UC">
+                <h1 style="color: #f39c12; font-family: 'Orbitron'; margin-top: 10px;">× 60</h1>
             </div>
             <div class="info-box">
                 <h2>60 UC</h2>
                 <div class="price">₹75.00</div>
-                <button class="btn-buy" onclick="openOrder('60 UC', '75')">CLAIM NOW</button>
+                <button class="btn-buy" onclick="openOrder('60 UC', '75')">ORDER NOW</button>
             </div>
             <div class="side-bar">
                 <div class="icon">🔥<span>2.5k</span></div>
@@ -162,12 +106,13 @@
 
         <div class="reel">
             <div class="uc-img-container">
-                <img src="https://i.postimg.cc/zX8yP3mP/uc-crate.png" width="100%" alt="UC">
+                <img src="https://www.pubgmobile.com/common/images/icon_uc.png" alt="UC" style="width: 120%;">
+                <h1 style="color: #f39c12; font-family: 'Orbitron'; margin-top: 10px;">× 325</h1>
             </div>
             <div class="info-box">
                 <h2>325 UC</h2>
                 <div class="price">₹380.00</div>
-                <button class="btn-buy" onclick="openOrder('325 UC', '380')">CLAIM NOW</button>
+                <button class="btn-buy" onclick="openOrder('325 UC', '380')">ORDER NOW</button>
             </div>
             <div class="side-bar">
                 <div class="icon">🔥<span>8.1k</span></div>
@@ -175,41 +120,37 @@
                 <div class="icon">🔗<span>Share</span></div>
             </div>
         </div>
-
     </div>
 
     <div class="modal" id="orderModal">
         <div style="width: 50px; height: 5px; background: #333; margin: 0 auto 30px; border-radius: 10px;"></div>
-        <h2 id="modalTitle" style="font-family: 'Bebas Neue'; font-size: 3rem; color: #00d4ff;">ORDER UC</h2>
-        <p id="modalPrice" style="color: #f39c12; font-family: 'Orbitron'; margin-bottom: 20px;"></p>
+        <h2 id="modalTitle" style="font-family: 'Bebas Neue'; font-size: 3.5rem; color: #00d4ff;">ORDER UC</h2>
+        <p id="modalPrice" style="color: #f39c12; font-family: 'Orbitron'; font-size: 22px; margin-bottom: 20px;"></p>
         
-        <input type="number" id="charID" placeholder="BGMI Character ID">
+        <input type="number" id="charID" placeholder="BGMI Character ID (10 Digits)">
         <input type="number" id="phone" placeholder="WhatsApp Number">
         
         <button class="btn-buy" style="width: 100%; margin-top: 20px;" onclick="confirmPay()">CONFIRM & PAY</button>
-        <p onclick="closeModal()" style="text-align: center; margin-top: 20px; color: #777; cursor: pointer;">Cancel Order</p>
+        <p onclick="closeModal()" style="text-align: center; margin-top: 20px; color: #777; cursor: pointer; font-weight: bold;">CLOSE</p>
     </div>
 
     <script>
-        let pack = "";
-        let price = "";
-
+        let pack = ""; let price = "";
         function openOrder(p, pr) {
             pack = p; price = pr;
             document.getElementById('modalTitle').innerText = "CLAIM: " + p;
-            document.getElementById('modalPrice').innerText = "AMOUNT: ₹" + pr;
+            document.getElementById('modalPrice').innerText = "TOTAL: ₹" + pr;
             document.getElementById('orderModal').style.display = 'block';
         }
-
         function closeModal() { document.getElementById('orderModal').style.display = 'none'; }
 
         function confirmPay() {
             const id = document.getElementById('charID').value;
-            if(id.length < 5) { alert("Sahi ID dalein!"); return; }
+            const num = document.getElementById('phone').value;
+            if(id.length < 5 || num.length < 10) { alert("⚠️ Sahi ID aur Number dalein!"); return; }
             
-            // Replace with your WhatsApp Number
-            const msg = `*NEW REEL ORDER*%0A*Pack:* ${pack}%0A*Price:* ₹${price}%0A*Character ID:* ${id}`;
-            window.open(`https://wa.me/91XXXXXXXXXX?text=${msg}`);
+            const msg = `*NEW REEL STORE ORDER*%0A---%0A*Pack:* ${pack}%0A*Price:* ₹${price}%0A*ID:* ${id}%0A*WhatsApp:* ${num}`;
+            window.open(`https://wa.me/91XXXXXXXXXX?text=${msg}`); // Apna number yahan dalein
         }
     </script>
 </body>
