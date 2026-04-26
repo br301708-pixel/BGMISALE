@@ -1,90 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>BGMI Top-Up</title>
-
-<style>
-body {
-    margin:0;
-    font-family: Arial;
-    background:#0b0f1a;
-    color:white;
-}
-
-header {
-    background:#111827;
-    padding:15px;
-    text-align:center;
-    font-size:22px;
-    font-weight:bold;
-}
-
-.container {
-    max-width:900px;
-    margin:auto;
-    padding:20px;
-}
-
-.box {
-    background:#1f2937;
-    padding:15px;
-    border-radius:10px;
-    margin-bottom:20px;
-}
-
-input {
-    width:100%;
-    padding:10px;
-    margin-top:10px;
-    border:none;
-    border-radius:5px;
-}
-
-.pack {
-    display:flex;
-    justify-content:space-between;
-    background:#111827;
-    padding:10px;
-    margin-top:10px;
-    border-radius:5px;
-    cursor:pointer;
-}
-
-.pack:hover {
-    background:orange;
-    color:black;
-}
-
-button {
-    width:100%;
-    padding:12px;
-    background:orange;
-    border:none;
-    margin-top:15px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.payment {
-    display:none;
-}
-
-.success {
-    display:none;
-    text-align:center;
-    font-size:20px;
-    color:lightgreen;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BGMI UC Store - Fast Delivery</title>
+    <style>
+        body { font-family: sans-serif; background: #121212; color: white; text-align: center; }
+        .container { max-width: 500px; margin: auto; padding: 20px; }
+        .pack { background: #1f1f1f; border: 1px solid #f39c12; border-radius: 10px; margin: 10px; padding: 15px; cursor: pointer; }
+        .pack:hover { background: #2c2c2c; }
+        input { width: 90%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none; }
+        button { background: #f39c12; color: black; padding: 12px 25px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; }
+        #payment-section { display: none; margin-top: 20px; border-top: 1px solid #333; padding-top: 20px; }
+        .qr-code { width: 200px; height: 200px; background: white; margin: 10px auto; }
+    </style>
 </head>
-
 <body>
 
-<header>🔥 BGMI UC TOP-UP</header>
-
 <div class="container">
+    <h2>BGMI UC STORE</h2>
+    <p>Select your pack and enter details</p>
 
-<div class="box">
-<h3>Enter Player ID</h3>
-<input type="text" id="pla
+    <div id="packs">
+        <div class="pack" onclick="selectPack(60, 75)">60 UC - ₹75</div>
+        <div class="pack" onclick="selectPack(325, 380)">325 UC - ₹380</div>
+        <div class="pack" onclick="selectPack(660, 750)">660 UC - ₹750</div>
+    </div>
+
+    <div id="order-form">
+        <input type="text" id="charID" placeholder="Enter Character ID" required>
+        <input type="text" id="whatsapp" placeholder="WhatsApp Number" required>
+        <p id="selected-info">Selected: None</p>
+        <button onclick="showPayment()">Pay Now</button>
+    </div>
+
+    <div id="payment-section">
+        <h3>Scan to Pay</h3>
+        <div class="qr-code">
+            <img src="https://via.placeholder.com/200?text=Your+UPI+QR" alt="UPI QR" style="width:100%">
+        </div>
+        <p>Amount to pay: <span id="pay-amount">₹0</span></p>
+        <p style="font-size: 12px; color: #aaa;">After payment, send screenshot to WhatsApp for fast delivery.</p>
+        <button onclick="window.location.href='https://wa.me/91YOURNUMBER'">Confirm on WhatsApp</button>
+    </div>
+</div>
+
+<script>
+    let selectedUC = 0;
+    let selectedPrice = 0;
+
+    function selectPack(uc, price) {
+        selectedUC = uc;
+        selectedPrice = price;
+        document.getElementById('selected-info').innerText = "Selected: " + uc + " UC for ₹" + price;
+        document.getElementById('pay-amount').innerText = "₹" + price;
+    }
+
+    function showPayment() {
+        const id = document.getElementById('charID').value;
+        if(id.length < 5 || selectedPrice === 0) {
+            alert("Please select a pack and enter valid ID");
+            return;
+        }
+        document.getElementById('payment-section').style.display = "block";
+    }
+</script>
+
+</body>
+</html>
