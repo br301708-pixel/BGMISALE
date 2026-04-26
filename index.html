@@ -1,62 +1,12 @@
-<script>
-    let selectedUC = "";
-    let selectedPrice = "";
-
-    // Aapka QR Image Link
-    const qrSource = "https://i.postimg.cc/mD7XFm07/Screenshot-2026-04-26-10-18-51-90-944a2809ea1b4cda6ef12d1db9048ed3.jpg";
-    document.getElementById('qrImg').src = qrSource;
-
-    function selectPack(el, uc, price) {
-        // Sabhi packs se 'active' class hatana
-        document.querySelectorAll('.pack').forEach(p => p.classList.remove('active'));
-        // Click kiye gaye pack ko highlight karna
-        el.classList.add('active');
-        
-        selectedUC = uc;
-        selectedPrice = price;
-    }
-
-    function openPayment() {
-        const charID = document.getElementById('charID').value;
-        const whatsappNum = document.getElementById('whatsappNum').value;
-
-        // Validation: Check karna ki sab details bhari hain ya nahi
-        if (selectedUC === "") {
-            alert("Please select a UC Pack first!");
-            return;
-        }
-        if (charID === "" || charID.length < 5) {
-            alert("Please enter a valid Character ID!");
-            return;
-        }
-        if (whatsappNum === "" || whatsappNum.length < 10) {
-            alert("Please enter your WhatsApp number!");
-            return;
-        }
-
-        // Price update karna aur section show karna
-        document.getElementById('priceDisplay').innerText = selectedPrice;
-        document.getElementById('payment-section').style.display = 'block';
-
-        // Page ko niche scroll karna taaki QR dikhe
-        window.scrollTo({
-            top: document.getElementById('payment-section').offsetTop,
-            behavior: 'smooth'
-        });
-    }
-
-    function sendWhatsApp() {
-        const charID = document.getElementById('charID').value;
-        const adminNumber = "8569354526"; // <--- Yahan apna real WhatsApp number dalein (91 ke saath)
-
-        const message = `*NEW UC ORDER*%0A` +
-                        `-----------------------%0A` +
-                        `*Pack:* ${selectedUC}%0A` +
-                        `*Price:* ₹${selectedPrice}%0A` +
-                        `*Character ID:* ${charID}%0A` +
-                        `-----------------------%0A` +
-                        `Maine payment kar di hai, please screenshot check karein.`;
-
-        window.open(`https://wa.me/${adminNumber}?text=${message}`, '_blank');
-    }
-</script>
+<div class="redeem-box">
+    <h3>Redeem Your Rewards</h3>
+    <p>Current Balance: <span id="userCoins">500</span> Coins</p>
+    
+    <select id="rewardType">
+        <option value="60">60 UC (Needed: 1000 Coins)</option>
+        <option value="325">325 UC (Needed: 5000 Coins)</option>
+    </select>
+    
+    <input type="text" placeholder="Enter BGMI Character ID (e.g. 512345678)" id="targetID">
+    <button onclick="requestRedeem()">Redeem Now</button>
+</div>
