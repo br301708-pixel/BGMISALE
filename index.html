@@ -3,257 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GamerHub Pro | Ultimate UC Store</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Bebas+Neue&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>BGMI Official Recharge | Codashop Style</title>
     <style>
         :root {
-            --primary: #f39c12; /* Gold */
-            --secondary: #00d4ff; /* Cyber Blue */
-            --bg-overlay: rgba(0, 0, 0, 0.7);
-            --card-border: rgba(255, 255, 255, 0.1);
+            --main-bg: #111;
+            --box-bg: #222c38;
+            --accent: #f39c12;
+            --text-white: #ffffff;
         }
 
-        body, html {
-            height: 100%;
-            margin: 0;
-            background: #000;
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
 
-        /* 📸 FULL PHOTO BACKGROUND SETUP */
-        .full-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('https://i.ibb.co/Xz9J2wH/image-3.png'); /* ⚠️ Apni photo yahan replace karein */
+        body {
+            background-image: url('https://i.ibb.co/Xz9J2wH/227ce-16365525819565-1920.webp');
             background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            z-index: -2;
-            filter: brightness(0.4) contrast(1.1); /* Darken for visibility */
+            background-position: top center;
+            background-attachment: fixed;
+            color: var(--text-white);
+            line-height: 1.6;
         }
 
-        /* Top Header */
-        nav {
+        /* Overlay to make it look clean */
+        body::before {
+            content: "";
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7); z-index: -1;
+        }
+
+        .navbar {
+            background: #23272b;
+            padding: 15px 5%;
+            border-bottom: 3px solid var(--accent);
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 2px solid var(--primary);
-            position: fixed; top: 0; width: 100%; z-index: 100;
         }
 
-        .logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--primary);
-            text-shadow: 0 0 10px var(--primary);
-        }
+        .navbar .logo { font-size: 24px; font-weight: bold; color: var(--accent); }
 
-        .coin-balance {
-            background: rgba(0,0,0,0.6);
-            padding: 10px 20px;
-            border-radius: 20px;
-            border: 1px solid var(--primary);
-            font-family: 'Orbitron';
-            color: #f1c40f;
-            display: flex; align-items: center; gap: 8px;
-        }
-
-        /* Main Container */
         .container {
-            max-width: 1200px;
-            margin: 120px auto 40px auto; /* Margin for Nav */
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 15px;
         }
 
-        /* Section Title (Optional, like image) */
-        .hero {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .hero h1 {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 3.5rem;
-            color: #fff;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-            margin-bottom: 10px;
-        }
-
-        /* 📸 SHOP GRID LAYOUT LIKE IMAGE */
-        .uc-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            width: 100%;
-        }
-
-        .uc-card {
-            background: rgba(26, 26, 26, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            transition: 0.3s;
-            backdrop-filter: blur(5px);
+        /* Step Box Style like Codashop */
+        .step-box {
+            background: var(--box-bg);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             position: relative;
         }
 
-        .uc-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: 0 0 20px rgba(243, 156, 18, 0.5);
-        }
-
-        /* Label Fix (Top Right like image) */
-        .uc-card::after {
-            content: "MEGA PACK";
+        .step-number {
             position: absolute;
-            top: 15px; right: 15px;
-            background: var(--primary);
+            top: -15px;
+            left: 20px;
+            background: var(--accent);
             color: #000;
-            font-size: 10px;
-            font-weight: 700;
-            padding: 4px 10px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .step-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 15px;
             border-radius: 5px;
-            text-transform: uppercase;
+            border: 2px solid #3e4b5b;
+            background: #1a222b;
+            color: white;
+            font-size: 16px;
+            outline: none;
         }
 
-        /* UC Images Fix */
-        .uc-photo {
-            width: 60%;
-            max-width: 180px;
-            margin-bottom: 15px;
-            filter: drop-shadow(0 0 20px var(--primary));
-            animation: ucGlow 2s infinite alternate ease-in-out;
+        input[type="number"]:focus { border-color: var(--accent); }
+
+        /* UC Denomination Grid */
+        .uc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
         }
 
-        @keyframes ucGlow {
-            from { filter: drop-shadow(0 0 10px rgba(243, 156, 18, 0.5)); }
-            to { filter: drop-shadow(0 0 25px rgba(243, 156, 18, 1)); }
+        .uc-item {
+            background: #1a222b;
+            border: 1px solid #3e4b5b;
+            border-radius: 8px;
+            padding: 20px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+            position: relative;
         }
 
-        /* Text Fixes */
-        .card-title h3 {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 3rem;
-            color: #fff;
-            text-shadow: 0 0 15px #fff;
-            line-height: 1;
+        .uc-item:hover { border-color: var(--accent); }
+
+        .uc-item.active {
+            background: rgba(243, 156, 18, 0.1);
+            border: 2px solid var(--accent);
         }
 
-        .price-tag {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 26px;
-            color: var(--primary);
-            margin: 15px 0;
-            font-weight: 700;
+        .uc-item img { width: 40px; margin-bottom: 10px; }
+        .uc-val { display: block; font-weight: bold; font-size: 18px; }
+        .uc-price { color: #8899a6; font-size: 14px; }
+
+        /* Payment Section */
+        .pay-method {
+            background: #1a222b;
+            border: 1px solid #3e4b5b;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* Claim Button (Fixed for new layout) */
-        .claim-btn {
-            background: linear-gradient(90deg, var(--primary) 0%, #e67e22 100%);
+        .buy-now-area {
+            background: var(--box-bg);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .btn-order {
+            background: var(--accent);
             color: #000;
             border: none;
-            padding: 18px 45px;
-            font-size: 20px;
-            font-weight: 700;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 0 30px rgba(243, 156, 18, 0.6);
-            text-transform: uppercase;
-            font-family: 'Poppins';
+            padding: 18px 0;
             width: 100%;
-            transition: 0.3s;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
         }
 
-        .claim-btn:active { transform: scale(0.95); }
+        .btn-order:hover { background: #e67e22; }
 
-        /* Popup Modal (Wahi Reel-Style Logic) */
-        .modal {
-            display: none;
-            position: fixed;
-            bottom: 0; left: 0; width: 100%; height: 75%;
-            background: rgba(10, 10, 10, 0.98);
-            backdrop-filter: blur(15px);
-            border-top: 4px solid var(--primary);
-            border-radius: 35px 35px 0 0;
-            padding: 35px;
-            z-index: 1000;
-            animation: slideIn 0.3s ease-out;
-        }
+        .helper-text { font-size: 12px; color: #8899a6; margin-top: 10px; display: block; }
 
-        @keyframes slideIn { from { transform: translateY(100%); } to { transform: translateY(0); } }
-
-        input {
-            width: 100%; padding: 18px; margin: 12px 0;
-            background: #222; border: 1px solid #444;
-            color: #fff; border-radius: 12px; font-size: 16px;
-        }
     </style>
 </head>
 <body>
 
-<div class="full-bg"></div>
-
-<nav>
-    <div class="logo">GAMERHUB.PRO</div>
-    <div class="coin-balance">🪙 <span>12,400</span></div>
-</nav>
+<div class="navbar">
+    <div class="logo">GAMERHUB SHOP</div>
+</div>
 
 <div class="container">
-    
-    <div class="hero">
-        <h1>BATTLEGROUNDS UC SHOP</h1>
-        <p style="color: #888;">Instant Delivery | Official Partner API</p>
+
+    <div class="step-box">
+        <div class="step-number">1</div>
+        <span class="step-title">Enter Character ID</span>
+        <input type="number" id="charID" placeholder="Enter Player ID">
+        <span class="helper-text">To find your ID, click on your profile icon in-game.</span>
     </div>
 
-    <div class="uc-grid">
-        
-        <div class="uc-card">
-            <div class="product-display">
-                <img src="https://i.ibb.co/K2T9G7r/uc-stack.png" class="uc-photo" alt="60 UC Stack">
+    <div class="step-box">
+        <div class="step-number">2</div>
+        <span class="step-title">Select Recharge</span>
+        <div class="uc-grid">
+            <div class="uc-item" onclick="selectItem(this, '60 UC', '75')">
+                <img src="https://www.pubgmobile.com/common/images/icon_uc.png" alt="uc">
+                <span class="uc-val">60 UC</span>
+                <span class="uc-price">₹75.00</span>
             </div>
-            <div class="card-title">
-                <h3>60 UC</h3>
-                <div class="price-tag">₹75.00</div>
+            <div class="uc-item" onclick="selectItem(this, '325 UC', '380')">
+                <img src="https://www.pubgmobile.com/common/images/icon_uc.png" alt="uc">
+                <span class="uc-val">325 UC</span>
+                <span class="uc-price">₹380.00</span>
             </div>
-            <button class="claim-btn" onclick="openOrder('60 UC', '75')">ORDER NOW</button>
+            <div class="uc-item" onclick="selectItem(this, '660 UC', '750')">
+                <img src="https://www.pubgmobile.com/common/images/icon_uc.png" alt="uc">
+                <span class="uc-val">660 UC</span>
+                <span class="uc-price">₹750.00</span>
+            </div>
+            <div class="uc-item" onclick="selectItem(this, '1800 UC', '1900')">
+                <img src="https://www.pubgmobile.com/common/images/icon_uc.png" alt="uc">
+                <span class="uc-val">1800 UC</span>
+                <span class="uc-price">₹1900.00</span>
+            </div>
         </div>
+    </div>
 
-        <div class="uc-card">
-            <div class="product-display">
-                <img src="https://i.ibb.co/JvT7y5g/uc-crate.png" class="uc-photo" alt="325 UC Crate">
-            </div>
-            <div class="card-title">
-                <h3>325 UC</h3>
-                <div class="price-tag">₹380.00</div>
-            </div>
-            <button class="claim-btn" onclick="openOrder('325 UC', '380')">ORDER NOW</button>
+    <div class="step-box">
+        <div class="step-number">3</div>
+        <span class="step-title">Select Payment</span>
+        <div class="pay-method">
+            <span>UPI (PhonePe, Google Pay, Paytm)</span>
+            <span style="color: var(--accent);">✅</span>
         </div>
+    </div>
 
-        <div class="uc-card">
-            <div class="product-display">
-                <img src="https://i.ibb.co/zX8yP3mP/uc-vault.png" class="uc-photo" alt="660 UC Vault">
-            </div>
-            <div class="card-title">
-                <h3 style="color: #f1c40f;">660 UC</h3>
-                <div class="price-tag">₹750.00</div>
-            </div>
-            <button class="claim-btn" onclick="openOrder('660 UC', '750')">ORDER NOW</button>
-        </div>
-        
+    <div class="buy-now-area">
+        <button class="btn-order" onclick="placeOrder()">Buy Now</button>
     </div>
 
 </div>
 
-<div class="modal" id="orderModal">
-    <div style="width: 60px; height: 6px; background: rgba(255,255,255,0.1);
+<script>
+    let selectedUC = "";
+    let selectedPrice = "";
+
+    function selectItem(element, uc, price) {
+        // Remove active class from all
+        document.querySelectorAll('.uc-item').forEach(el => el.classList.remove('active'));
+        // Add to clicked
+        element.classList.add('active');
+        selectedUC = uc;
+        selectedPrice = price;
+    }
+
+    function placeOrder() {
+        const id = document.getElementById('charID').value;
+        if(!id) { alert("Please enter your Player ID!"); return; }
+        if(!selectedUC) { alert("Please select UC package!"); return; }
+
+        const myWhatsApp = "91XXXXXXXXXX"; // APNA NUMBER DALEIN
+        const text = `*NEW ORDER FROM STORE*%0ACharacter ID: ${id}%0APackage: ${selectedUC}%0APrice: ₹${selectedPrice}%0AStatus: Pending`;
+        
+        window.open(`https://wa.me/${myWhatsApp}?text=${text}`);
+    }
+</script>
+
+</body>
+</html>
