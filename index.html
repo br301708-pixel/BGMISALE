@@ -86,7 +86,7 @@
     <div class="step-box">
         <div class="step-number">1</div>
         <span class="step-title">Enter Character ID</span>
-        <input type="number" id="charID" placeholder="Enter Player ID">
+        <input type="number" id="charID" placeholder="Enter Player ID (Ex: 5123456789)">
     </div>
 
     <div class="step-box">
@@ -101,6 +101,14 @@
                 <img src="https://www.pubgmobile.com/common/images/icon_uc.png" alt="uc">
                 <span class="uc-val">325 UC</span><span class="uc-price">₹380.00</span>
             </div>
+            <div class="uc-item" onclick="selectItem(this, '660 UC', '750')">
+                <img src="https://www.pubgmobile.com/common/images/icon_uc.png" alt="uc">
+                <span class="uc-val">660 UC</span><span class="uc-price">₹750.00</span>
+            </div>
+            <div class="uc-item" onclick="selectItem(this, '1800 UC', '1900')">
+                <img src="https://www.pubgmobile.com/common/images/icon_uc.png" alt="uc">
+                <span class="uc-val">1800 UC</span><span class="uc-price">₹1900.00</span>
+            </div>
         </div>
     </div>
 
@@ -109,12 +117,12 @@
         <span class="step-title">Payment Method</span>
         <div class="pay-option">
             <img src="https://img.icons8.com/color/48/000000/upi.png" width="30">
-            <span>UPI (Auto-Detect Apps)</span>
+            <span>UPI Apps (PhonePe, GPay, Paytm)</span>
         </div>
     </div>
 
     <div class="buy-now-area">
-        <button class="btn-order" onclick="initiatePayment()">Pay & Send Order</button>
+        <button class="btn-order" onclick="initiatePayment()">Pay & Recharge Now</button>
     </div>
 </div>
 
@@ -129,33 +137,4 @@
         selectedPrice = price;
     }
 
-    function initiatePayment() {
-        const id = document.getElementById('charID').value;
-        if(!id || !selectedUC) { alert("ID dalo aur UC select karo!"); return; }
-
-        // --- CONFIGURATION ---
-        const vpa = "your-upi-id@okicici"; // ⚠️ APNI UPI ID YAHAN DALEIN
-        const name = "GamerHub Store";
-        const myWhatsApp = "91XXXXXXXXXX"; // ⚠️ APNA WHATSAPP NUMBER DALEIN
-
-        // 1. Create UPI Link
-        const upiLink = `upi://pay?pa=${vpa}&pn=${encodeURIComponent(name)}&am=${selectedPrice}&cu=INR`;
-
-        // 2. Open UPI App for Payment
-        window.location.href = upiLink;
-
-        // 3. WhatsApp Message Link (Payment ke baad user wapas aakar bhejega)
-        const text = `*ORDER PLACED*%0AID: ${id}%0AProduct: ${selectedUC}%0APrice: ₹${selectedPrice}%0A*I have completed the payment*`;
-        const waLink = `https://wa.me/${myWhatsApp}?text=${text}`;
-
-        // 4. Delay takki user pay kar sake, fir WhatsApp par bhej de
-        setTimeout(() => {
-            if(confirm("Agar payment ho gayi hai toh WhatsApp par order details bhein?")) {
-                window.location.href = waLink;
-            }
-        }, 5000);
-    }
-</script>
-
-</body>
-</html>
+    function
